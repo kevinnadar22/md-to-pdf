@@ -10,14 +10,14 @@ export interface StyleSettings {
 }
 
 export const defaultSettings: StyleSettings = {
-  fontFamily: 'Inter',
+  fontFamily: 'system-ui, -apple-system, sans-serif',
   fontSize: 16,
-  lineHeight: 1.6,
+  lineHeight: 1.5,
   paragraphSpacing: 1.5,
-  textColor: '#1f2937',  // tailwind gray-800
-  headingColor: '#111827', // tailwind gray-900
+  textColor: '#24292f',
+  headingColor: '#24292f',
   backgroundColor: '#ffffff',
-  accentColor: '#3b82f6', // tailwind blue-500
+  accentColor: '#0969da',
 };
 
 export const fontOptions = [
@@ -29,30 +29,17 @@ export const fontOptions = [
   { name: 'System Sans', value: 'system-ui, -apple-system, sans-serif' },
 ];
 
-export const defaultMarkdown = `# My Document
+export const defaultMarkdown = `# Markdown to PDF
+### We've converted 26,34,351 Markdown files to PDF and counting!
 
-This is an **excellent** markdown-to-pdf converter utilizing React, standard web APIs, and KaTeX!
+To convert your Markdown to PDF simply start by typing in the editor or pasting from your clipboard.
 
-## Features
-- **Live Preview:** See changes seamlessly as you type!
-- **Rich Formatting:** Headers, lists, *italics*, and **bold** text.
-- **Custom Styling:** Use the sidebar to tweak fonts, sizes, and colors.
-- **PDF Export:** Click exactly one button to get an immediate, pristine PDF!
+If your Markdown is in a file clear this content and drop your file into this editor.
 
-### Math (KaTeX)
-Here's a standard formula inline $E = mc^2$, and here is a block:
+<sup style="display: inline-block;">**tip:** click on the pencil icon on the left to clear the editor)</sup>
 
-$$
-\\frac{n!}{k!(n-k)!} = \\binom{n}{k}
-$$
-
-### Code Highlighting
-\`\`\`javascript
-function convertToPdf() {
-  console.log("Printing to PDF natively...");
-  window.print();
-}
-\`\`\`
+## GitHub flavoured styling by default
+We now use GitHub flavoured styling by default.
 
 ### Tables Supported natively via GFM
 
@@ -60,6 +47,4 @@ function convertToPdf() {
 |--------|-------|-------------|
 | Font Size | 16px | The master size for body text |
 | Layout | Default | Two-pane view |
-
-> "Simplicity is the ultimate sophistication." — Leonardo da Vinci
 `;

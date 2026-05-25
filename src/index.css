@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* Document & Markdown Customization Variables */
+:root {
+  --font-family: 'Inter', sans-serif;
+  --font-size: 16px;
+  --line-height: 1.6;
+  --p-spacing: 1.5;
+  --text-color: #1f2937;
+  --heading-color: #111827;
+  --bg-color: #ffffff;
+  --accent-color: #3b82f6;
+}
+
+body {
+  background-color: var(--color-gray-50);
+  margin: 0;
+}
+
+/* Base Markdown Styles */
+.markdown-preview {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  max-width: 100%;
+}
+
+.markdown-preview h1, 
+.markdown-preview h2, 
+.markdown-preview h3, 
+.markdown-preview h4, 
+.markdown-preview h5, 
+.markdown-preview h6 {
+  color: var(--heading-color);
+  font-weight: 600;
+  margin-top: calc(1.5 * var(--p-spacing) * 1em);
+  margin-bottom: calc(0.5 * var(--p-spacing) * 1em);
+  line-height: 1.25;
+}
+
+.markdown-preview h1 { font-size: 2.25em; border-bottom: 2px solid rgba(128,128,128,0.2); padding-bottom: 0.3em; margin-bottom: 0.5em; }
+.markdown-preview h2 { font-size: 1.8em; border-bottom: 1px solid rgba(128,128,128,0.2); padding-bottom: 0.3em; }
+.markdown-preview h3 { font-size: 1.4em; }
+.markdown-preview h4 { font-size: 1.2em; }
+
+.markdown-preview p {
+  margin-bottom: calc(var(--p-spacing) * 1em);
+}
+
+.markdown-preview a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+.markdown-preview a:hover {
+  text-decoration: underline;
+}
+
+.markdown-preview ul, .markdown-preview ol {
+  margin-bottom: calc(var(--p-spacing) * 1em);
+  padding-left: 2em;
+}
+
+.markdown-preview ul { list-style-type: disc; }
+.markdown-preview ol { list-style-type: decimal; }
+.markdown-preview li + li { margin-top: 0.25em; }
+
+.markdown-preview blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1em;
+  margin-bottom: calc(var(--p-spacing) * 1em);
+  color: inherit;
+  opacity: 0.8;
+  font-style: italic;
+  background: rgba(128, 128, 128, 0.05);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+.markdown-preview pre {
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  margin-bottom: calc(var(--p-spacing) * 1em);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+}
+
+.markdown-preview code {
+  font-family: "JetBrains Mono", monospace;
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.9em;
+}
+
+.markdown-preview pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  line-height: 1.4;
+}
+
+.markdown-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: calc(var(--p-spacing) * 1em);
+}
+
+.markdown-preview th, .markdown-preview td {
+  border: 1px solid rgba(128,128,128,0.2);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.markdown-preview th {
+  background-color: rgba(0,0,0,0.02);
+  font-weight: 600;
+}
+
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.375em;
+  margin-bottom: calc(var(--p-spacing) * 1em);
+}
+
+.markdown-preview hr {
+  border: 0;
+  border-top: 2px solid rgba(128,128,128,0.1);
+  margin: 2em 0;
+}
+
+/* Print CSS setup for full fidelity */
+@media print {
+  /* Remove any hidden overflow from standard wrappers to allow multi-page printing */
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Reset layout constraints on wrappers holding the print area */
+  .flex {
+    display: block !important;
+  }
+
+  .print-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .markdown-preview {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    /* Typical print margins */
+    margin: 20mm;
+  }
+}

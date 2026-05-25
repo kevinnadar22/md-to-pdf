@@ -57,8 +57,57 @@ export default function App() {
     }
   };
 
-  const handlePrint = () => {
-    window.print();
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handlePrint = async () => {
+    if (!previewRef.current) return;
+    try {
+      setIsExporting(true);
+      
+      const cssVariablesString = `
+        --font-family: ${settings.fontFamily};
+        --font-size: ${settings.fontSize}px;
+        --line-height: ${settings.lineHeight};
+        --p-spacing: ${settings.paragraphSpacing};
+        --text-color: ${settings.textColor};
+        --heading-color: ${settings.headingColor};
+        --bg-color: ${settings.backgroundColor};
+        --accent-color: ${settings.accentColor};
+      `;
+
+      // We get the innerHTML of the preview to send to backend
+      const markdownContainer = previewRef.current.querySelector('.markdown-body');
+      if (!markdownContainer) return;
+
+      const html = markdownContainer.innerHTML;
+
+      const res = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ html, cssVariablesString })
+      });
+      
+      if (!res.ok) {
+        throw new Error('Failed to generate PDF');
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'document.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    } catch (e) {
+      console.error(e);
+      alert("Failed to export PDF.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   const cssVariables = {
@@ -115,10 +164,15 @@ export default function App() {
             </button>
             <button 
               onClick={handlePrint}
-              className="flex items-center gap-2 bg-[#24292f] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-md hover:bg-black transition-colors text-xs md:text-sm font-medium shadow-sm"
+              disabled={isExporting}
+              className={`flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-md transition-colors text-xs md:text-sm font-medium shadow-sm ${
+                isExporting 
+                  ? 'bg-gray-400 cursor-not-allowed text-white' 
+                  : 'bg-[#24292f] hover:bg-black text-white'
+              }`}
             >
-              <Download size={14} />
-              <span className="hidden md:inline">Download</span>
+              <Download size={14} className={isExporting ? 'animate-bounce' : ''} />
+              <span className="hidden md:inline">{isExporting ? 'Generating...' : 'Download'}</span>
             </button>
           </div>
         </div>

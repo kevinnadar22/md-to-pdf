@@ -193,7 +193,7 @@ export default function App() {
         className="w-full md:w-1/2 h-1/2 md:h-full overflow-y-auto flex print:w-full print:block print:h-auto print:overflow-visible print:border-none print:bg-white border-l border-gray-200"
         style={cssVariables}
       >
-        <div className="w-full h-fit max-w-[210mm] print:max-w-none mx-auto print:mx-0 p-8 md:p-12 lg:p-16 print:p-0 markdown-preview print:block">
+        <div className="w-full h-fit max-w-[210mm] print:max-w-none mx-auto print:mx-0 p-8 md:p-12 lg:p-16 print:p-[20mm] markdown-preview print:block">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex, rehypeHighlight]}

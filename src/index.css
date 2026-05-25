@@ -137,35 +137,13 @@ body {
 
 /* Print CSS setup for full fidelity */
 @media print {
-  /* Remove any hidden overflow from standard wrappers to allow multi-page printing */
   html, body, #root {
     height: auto !important;
+    min-height: 100% !important;
     overflow: visible !important;
     background-color: white !important;
     margin: 0 !important;
     padding: 0 !important;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-  
-  /* Reset layout constraints on wrappers holding the print area */
-  .flex {
-    display: block !important;
-  }
-
-  .print-area {
-    display: block !important;
-    position: static !important;
-    width: 100% !important;
-    max-width: none !important;
-    height: auto !important;
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
   }
   
   .markdown-preview {
@@ -174,7 +152,6 @@ body {
   }
 
   @page {
-    /* Typical print margins */
     margin: 20mm;
   }
 }

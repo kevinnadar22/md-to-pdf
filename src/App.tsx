@@ -31,10 +31,10 @@ export default function App() {
   } as React.CSSProperties;
 
   return (
-    <div className="w-full h-screen flex flex-col md:flex-row overflow-hidden bg-gray-50 font-sans text-gray-900">
+    <div className="w-full h-screen flex flex-col md:flex-row overflow-hidden print:h-auto print:overflow-visible print:block print:bg-white bg-gray-50 font-sans text-gray-900">
       
       {/* Editor Pane */}
-      <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col border-b md:border-b-0 md:border-r border-gray-200 bg-white no-print z-10">
+      <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col border-b md:border-b-0 md:border-r border-gray-200 bg-white print:hidden z-10">
         <div className="h-14 border-b border-gray-200 flex items-center justify-between px-4 bg-gray-50/80 backdrop-blur">
           <div className="flex items-center gap-2 text-indigo-600 font-semibold tracking-tight">
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded flex items-center justify-center text-white text-base font-bold select-none">
@@ -190,10 +190,10 @@ export default function App() {
 
       {/* Preview Pane */}
       <div 
-        className="w-full md:w-1/2 h-1/2 md:h-full overflow-y-auto flex print-area print:p-0 border-l border-gray-200"
+        className="w-full md:w-1/2 h-1/2 md:h-full overflow-y-auto flex print:w-full print:block print:h-auto print:overflow-visible print:border-none print:bg-white border-l border-gray-200"
         style={cssVariables}
       >
-        <div className="w-full h-fit p-8 md:p-12 lg:p-16 print-area markdown-preview">
+        <div className="w-full h-fit max-w-[210mm] print:max-w-none mx-auto print:mx-0 p-8 md:p-12 lg:p-16 print:p-0 markdown-preview print:block">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex, rehypeHighlight]}

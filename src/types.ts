@@ -9,6 +9,13 @@ export interface StyleSettings {
   accentColor: string;
 }
 
+export interface Document {
+  id: string;
+  name: string;
+  content: string;
+  updatedAt: number;
+}
+
 export const defaultSettings: StyleSettings = {
   fontFamily: 'system-ui, -apple-system, sans-serif',
   fontSize: 16,

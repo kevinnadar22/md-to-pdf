@@ -40,6 +40,28 @@ body {
   color: var(--accent-color) !important;
 }
 
+.markdown-body ul {
+  list-style-type: disc !important;
+  padding-left: 1.5em !important;
+}
+
+.markdown-body ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5em !important;
+}
+
+.markdown-body ul ul,
+.markdown-body ol ul {
+  list-style-type: circle !important;
+}
+
+.markdown-body ul ul ul,
+.markdown-body ul ol ul,
+.markdown-body ol ul ul,
+.markdown-body ol ol ul {
+  list-style-type: square !important;
+}
+
 /* Print CSS setup for full fidelity */
 @media print {
   html, body, #root {
